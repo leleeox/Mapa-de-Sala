@@ -9,8 +9,21 @@ class cadastrarSalas(QMainWindow):
 
     @pyqtSlot()
     def on_cadastrarSalaBtn_clicked(self):
-        return self.getNomeSala()
-    
+        nomeSala = self.getNomeSala()
+        if nomeSala:
+            self.registrarSala(nomeSala)
+        else:
+            self.mostrarErro("O nome da sala não pode estar vazio.")
+
     def getNomeSala(self):
-        sala = self.inputSala.text().strip()
-        return (sala)
+        return self.nomeSala.text().strip()
+
+    def registrarSala(self):
+        self.nomeSala.clear()
+
+
+if __name__ == "__main__":
+    app = QApplication([])
+    widget = cadastrarSalas()
+    widget.show()
+    app.exec_()
